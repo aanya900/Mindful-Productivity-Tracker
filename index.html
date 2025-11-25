@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mindful Productivity Tracker</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, #a1c4fd, #c2e9fb);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: fadeInDown 1s ease;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: #2d3748;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    /* Features Section */
+    .features {
+      background: #fff;
+      padding: 4rem 2rem;
+      text-align: center;
+      animation: fadeInUp 1s ease;
+    }
+
+    .features h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #2d3748;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: zoomIn 1s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      animation: pulse 2s infinite;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Tracker Section */
+    .tracker {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeInUp 1.2s ease;
+    }
+
+    .status {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .metric {
+      background: #edf2f7;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .metric:hover {
+      transform: scale(1.05);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .controls button {
+      background: #2b6cb0;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .controls button:hover {
+      background: #2c5282;
+      transform: translateY(-3px);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      margin-top: 2rem;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid #cbd5e0;
+      font-size: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    textarea:focus {
+      box-shadow: 0 0 10px #667eea;
+      outline: none;
+    }
+
+    .history {
+      margin-top: 2rem;
+      background: #f7fafc;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .chart-container {
+      margin-top: 1.5rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #2d3748;
+      color: white;
+      margin-top: 3rem;
+      animation: fadeInUp 1.5s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mindful Productivity Tracker</h1>
+    <p>Stay calm, focused, and track your mindful work sessions</p>
+  </header>
+
+  <!-- Features Section -->
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧘</div>
+        <h3>Mindful Focus</h3>
+        <p>Encourages calm, consistent typing to build deep concentration and flow state.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Live Metrics</h3>
+        <p>Track focus score, typing speed, calm index, and session duration in real time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>History Insights</h3>
+        <p>Review past sessions with a bar graph visualization of your focus scores.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌟</div>
+        <h3>Interactive Design</h3>
+        <p>Smooth animations and responsive layout make productivity tracking enjoyable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tracker Section -->
+  <section class="tracker">
+    <div class="status">
+      <h2 id="statusText">Ready to Begin</h2>
+      <p id="statusDesc">Click start and begin typing to track focus</p>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><div class="metric-value" id="focusScore">0%</div><div class="metric-label">Focus Score</div></div>
+      <div class="metric"><div class="metric-value" id="sessionTime">0:00</div><div class="metric-label">Session Time</div></div>
+      <div class="metric"><div class="metric-value" id="typingSpeed">0</div><div class="metric-label">Words/Min</div></div>
+      <div class="metric"><div class="metric-value" id="calmIndex">0%</div><div class="metric-label">Calm Index</div></div>
+    </div>
+
+    <div class="controls">
+      <button onclick="startSession()">Start Session</button>
+      <button onclick="simulateBreak()">Take Break</button>
+            <button onclick="endSession()">End Session</button>
+      <button onclick="resetSession()">Reset</button>
+    </div>
+
+    <textarea id="typingArea" placeholder="Type here to simulate mindful work..."></textarea>
+
+    <div class="history">
+      <h3>Flow State History</h3>
+      <ul id="historyList"></ul>
+      <div class="chart-container">
+        <canvas id="historyChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Mindful Productivity Tracker. Designed for balance and focus.</p>
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    let sessionActive = false;
+    let startTime = null;
+    let wordCount = 0;
+    let history = [];
+    let historyChart = null;
+
+    const typingArea = document.getElementById('typingArea');
+
+    function initChart() {
+  const ctx = document.getElementById('historyChart').getContext('2d');
+  historyChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [],
+      datasets: [{
+        label: 'Focus Score (%)',
+        data: [],
+        backgroundColor: ctx.createLinearGradient(0, 0, 0, 400),
+        borderRadius: 12, // rounded bars
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1200,
+        easing: 'easeOutQuart'
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: '#2d3748',
+          titleColor: '#fff',
+          bodyColor: '#fff',
+          cornerRadius: 8,
+          padding: 12
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#2d3748', font: { weight: 'bold' } }
+        },
+        y: {
+          beginAtZero: true,
+          max: 100,
+          grid: { color: '#e2e8f0' },
+          ticks: { color: '#2d3748' }
+        }
+      }
+    }
+  });
+  const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient.addColorStop(0, '#00b4d8'); // teal top
+  gradient.addColorStop(1, '#ff6b6b'); // coral bottom
+  historyChart.data.datasets[0].backgroundColor = gradient;
+
+    }
+
+    function startSession() {
+      if (sessionActive) return;
+      sessionActive = true;
+      startTime = Date.now();
+      wordCount = 0;
+      document.getElementById('statusText').textContent = "Session Active";
+      document.getElementById('statusDesc').textContent = "Keep typing mindfully to build focus";
+    }
+
+    function endSession() {
+      if (!sessionActive) return;
+      sessionActive = false;
+      const elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+      const minutes = Math.floor(elapsedSeconds / 60);
+      const seconds = elapsedSeconds % 60;
+
+      const focusScore = parseInt(document.getElementById('focusScore').textContent.replace('%','')) || 0;
+      const typingSpeed = parseInt(document.getElementById('typingSpeed').textContent) || 0;
+      const calmIndex = document.getElementById('calmIndex').textContent;
+
+      const sessionSummary = {
+        time: `${minutes}:${seconds.toString().padStart(2, '0')}`,
+        focus: focusScore,
+        speed: typingSpeed,
+        calm: calmIndex
+      };
+      history.push(sessionSummary);
+      updateHistory();
+      updateChart();
+
+      document.getElementById('statusText').textContent = "Session Ended";
+      document.getElementById('statusDesc').textContent = "Great job! Review your metrics below.";
+      document.getElementById('sessionTime').textContent = sessionSummary.time;
+    }
+
+    function resetSession() {
+      sessionActive = false;
+      startTime = null;
+      wordCount = 0;
+      typingArea.value = "";
+      document.getElementById('statusText').textContent = "Ready to Begin";
+      document.getElementById('statusDesc').textContent = "Click start and begin typing to track focus";
+      document.getElementById('focusScore').textContent = "0%";
+      document.getElementById('sessionTime').textContent = "0:00";
+      document.getElementById('typingSpeed').textContent = "0";
+      document.getElementById('calmIndex').textContent = "0%";
+    }
+
+    function simulateBreak() {
+      document.getElementById('statusText').textContent = "Break Time";
+      document.getElementById('statusDesc').textContent = "Take a deep breath and relax";
+      document.getElementById('calmIndex').textContent = "100%";
+    }
+
+    typingArea.addEventListener('input', () => {
+      if (!sessionActive) startSession();
+      wordCount = typingArea.value.trim().split(/\s+/).filter(Boolean).length;
+
+      const elapsedMs = Date.now() - startTime;
+      const elapsedMinutes = elapsedMs / 60000;
+      const elapsedSeconds = Math.floor(elapsedMs / 1000);
+
+      const wpm = elapsedMinutes > 0 ? Math.round(wordCount / elapsedMinutes) : 0;
+      document.getElementById('typingSpeed').textContent = wpm;
+      document.getElementById('focusScore').textContent = Math.min(100, wpm) + "%";
+
+      const minutes = Math.floor(elapsedSeconds / 60);
+      const seconds = elapsedSeconds % 60;
+      document.getElementById('sessionTime').textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+      document.getElementById('calmIndex').textContent = (100 - Math.min(100, wpm)) + "%";
+    });
+
+    function updateHistory() {
+      const historyList = document.getElementById('historyList');
+      historyList.innerHTML = "";
+      history.forEach((session, index) => {
+        const li = document.createElement('li');
+        li.textContent = `Session ${index+1}: Duration ${session.time}, Focus ${session.focus}%, Speed ${session.speed} WPM, Calm ${session.calm}`;
+        historyList.appendChild(li);
+      });
+    }
+
+    function updateChart() {
+      historyChart.data.labels = history.map((_, i) => `Session ${i+1}`);
+      historyChart.data.datasets[0].data = history.map(s => s.focus);
+      historyChart.update();
+    }
+
+    window.onload = initChart;
+  </script>
+</body>
+</html>
